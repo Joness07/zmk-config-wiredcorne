@@ -1,6 +1,19 @@
-name: Build ZMK firmware
+name: Build Corne Firmware
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build:
+  build-left:
+    name: Build Left (Central)
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    with:
+      CONFIG_DIR: config-left
+      SHIELD: "corne_left nice_view_adapter nice_view"
+      BOARD: nice_nano
+
+  build-right:
+    name: Build Right (Peripheral)
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
+    with:
+      CONFIG_DIR: config-right
+      SHIELD: "corne_right nice_view_adapter nice_view"
+      BOARD: nice_nano
